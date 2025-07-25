@@ -35,3 +35,17 @@ LEXICON = {
         'comedy': ['clumsily', 'goofily', 'merrily', 'playfully']
     }
 }
+
+# Context-Free Grammar Rules
+GRAMMAR = {
+    'SENTENCE': ['NP VP', 'NP VP PP', 'NP VP ADV'],
+    'NP': ['NOUN', 'ADJ NOUN', 'DET ADJ NOUN'],
+    'VP': ['VERB', 'VERB NP', 'VERB ADV'],
+    'PP': ['PREP NP'],
+    'DET': ['the', 'a', 'an'],
+    'PREP': ['in', 'through', 'behind', 'beyond'],
+    'NOUN': ['{noun}'],
+    'VERB': ['{verb}'],
+    'ADJ': ['{adjective}'],
+    'ADV': ['{adverb}']
+}
