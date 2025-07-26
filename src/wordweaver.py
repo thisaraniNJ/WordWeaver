@@ -51,3 +51,11 @@ GRAMMAR = {
 }
 
 # Moral Score Dictionary
+MORAL_WEIGHTS = {
+    'happy' : 0.8, 'sad' : 0.5, 'fearful' : -0.7, 'suspense' : -0.3, 'comedy' : 0.9,
+    'smile' : 0.5, 'hope' : 0.4, 'friend' : 0.3, 'tear' : -0.4, 'loss' : -0.5,
+    'danger': -0.6, 'mystery': -0.2, 'laughed': 0.5, 'cried': -0.4,
+    'trembled': -0.5, 'crept': -0.3, 'bright': 0.4, 'gloomy': -0.4,
+    'eerie': -0.5, 'funny': 0.6
+}
+
