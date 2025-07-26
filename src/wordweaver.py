@@ -49,3 +49,5 @@ GRAMMAR = {
     'ADJ': ['{adjective}'],
     'ADV': ['{adverb}']
 }
+
+# Moral Score Dictionary
