@@ -59,3 +59,19 @@ MORAL_WEIGHTS = {
     'eerie': -0.5, 'funny': 0.6
 }
 
+# Entity Memory 
+class EntityMemory:
+    def __init__(self, protagonist, setting):
+        self.protagonist = protagonist
+        self.setting = setting
+        self.entities = {'protagonist': protagonist, 'setting': setting}
+        self.used_nouns = set()
+
+    def get_entity(self, entity_type):
+        return self.entities.get(entity_type, '')
+    
+    def add_entity(self, entity_type, value):
+        self.entities[entity_type] = value
+    
+    def track_noun(self, noun):
+        self.used_nouns.add(noun)
