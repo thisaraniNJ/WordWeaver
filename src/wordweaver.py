@@ -75,3 +75,34 @@ class EntityMemory:
     
     def track_noun(self, noun):
         self.used_nouns.add(noun)
+
+# Semantic Checker
+class SemanticChecker:
+    def __init__(self):
+        self.word_vectors = {}
+        self.word_freq = defaultdict(lambda: defaultdict(int))
+        self.doc_count = 0
+
+    def build_vector(self, sentence):
+        words = re.findall(r'\b\w+\b', sentence.lower())
+        for word in words:
+            self.word_freq[word][self.doc_count] += 1
+        self.doc_count += 1
+        vector = {}
+        for word in words:
+            tf = self.word_freq[word][self.doc_count - 1] / len(words)
+            idf = np.log(self.doc_count / (1 + len(self.word_freq[word])))
+            vector[word] = tf * idf
+        self.word_vectors[sentence] = vector
+        return vector
+
+    def similarity(self, sent1, sent2):
+        vec1 = self.word_vectors.get(sent1, self.build_vector(sent1))
+        vec2 = self.word_vectors.get(sent2, self.build_vector(sent2))
+        words = set(vec1.keys()) & set(vec2.keys())
+        if not words:
+            return 0.0
+        dot_product = sum(vec1[word] * vec2[word] for word in words)
+        norm1 = np.sqrt(sum(v ** 2 for v in vec1.values()))
+        norm2 = np.sqrt(sum(v ** 2 for v in vec2.values()))
+        return dot_product / (norm1 * norm2 + 1e-10)
